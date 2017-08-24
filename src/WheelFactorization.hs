@@ -8,7 +8,7 @@ m3Cycle =  [6, 4, 2, 4, 2, 4, 6, 2]
 
 genCycle   :: Int -> [Int]
 genCycle n =  f ls
-              where primes = take n $ eratosthenes1 [2 .. 1000]
+              where primes = take n $ eratosthenes1 [2 .. 1000] -- 無限リストだと動かなかった
                     ls =  1 : (drop n $ eratosthenes1 $ take (product primes) [2 ..])
                     f (_ : []) = []
                     f (x1 : x2 : xs) = (x2 - x1) : f (x2 : xs)
@@ -30,7 +30,7 @@ wheelFactorization ln n =  (++) primes
                                                        . foldr1 (++)
                                                        . repeat
                                                        . genCycleLs . genCycle) n))
-                           where primes = take n $ eratosthenes1 [2 .. 10000]
+                           where primes = take n $ eratosthenes1 [2 .. 10000] -- 無限リストだと動かなかった
 
 eratosthenes          :: Integral a => [a] -> [a]
 eratosthenes []       =  []
